@@ -1,0 +1,1875 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadaqués Madrid - Formación de Alérgenos 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+        
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.2s ease-in-out;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(56, 189, 248, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.6);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(51, 65, 85, 0.8);
+            border-radius: 4px;
+        }
+
+        .badge-present {
+            background-color: rgba(239, 68, 68, 0.2);
+            color: #fca5a5;
+            border: 1px solid rgba(239, 68, 68, 0.4);
+        }
+        .badge-traces {
+            background-color: rgba(245, 158, 11, 0.2);
+            color: #fde047;
+            border: 1px solid rgba(245, 158, 11, 0.4);
+        }
+        .badge-absent {
+            background-color: rgba(34, 197, 94, 0.1);
+            color: #86efac;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+        }
+
+        /* Colored Allergen Checkboxes Custom Active States */
+        .checkbox-allergen:checked + label {
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+            border-width: 2px;
+            font-weight: 700;
+        }
+        
+        .checkbox-allergen:checked + label.color-Gluten { border-color: #f59e0b; background-color: rgba(245, 158, 11, 0.25); color: #fef3c7; }
+        .checkbox-allergen:checked + label.color-Crustáceos { border-color: #f43f5e; background-color: rgba(244, 63, 94, 0.25); color: #ffe4e6; }
+        .checkbox-allergen:checked + label.color-Huevo { border-color: #eab308; background-color: rgba(234, 179, 8, 0.25); color: #fef9c3; }
+        .checkbox-allergen:checked + label.color-Pescado { border-color: #06b6d4; background-color: rgba(6, 182, 212, 0.25); color: #cffaff; }
+        .checkbox-allergen:checked + label.color-Cacahuetes { border-color: #f97316; background-color: rgba(249, 115, 22, 0.25); color: #ffedd5; }
+        .checkbox-allergen:checked + label.color-Soja { border-color: #10b981; background-color: rgba(16, 185, 129, 0.25); color: #d1fae5; }
+        .checkbox-allergen:checked + label.color-Leche { border-color: #3b82f6; background-color: rgba(59, 130, 246, 0.25); color: #dbeafe; }
+        .checkbox-allergen:checked + label.color-Frutos { border-color: #d97706; background-color: rgba(217, 119, 6, 0.25); color: #fef3c7; }
+        .checkbox-allergen:checked + label.color-Apio { border-color: #22c55e; background-color: rgba(34, 197, 94, 0.25); color: #dcfce7; }
+        .checkbox-allergen:checked + label.color-Mostaza { border-color: #eab308; background-color: rgba(234, 179, 8, 0.25); color: #fef9c3; }
+        .checkbox-allergen:checked + label.color-Sésamo { border-color: #fb923c; background-color: rgba(251, 146, 60, 0.25); color: #ffedd5; }
+        .checkbox-allergen:checked + label.color-Ajo { border-color: #a855f7; background-color: rgba(168, 85, 247, 0.25); color: #f3e8ff; }
+        .checkbox-allergen:checked + label.color-Cerdo { border-color: #ec4899; background-color: rgba(236, 72, 153, 0.25); color: #fce7f3; }
+        .checkbox-allergen:checked + label.color-Sulfitos { border-color: #8b5cf6; background-color: rgba(139, 92, 246, 0.25); color: #ede9fe; }
+        .checkbox-allergen:checked + label.color-Altramuces { border-color: #84cc16; background-color: rgba(132, 204, 22, 0.25); color: #ecfccb; }
+        .checkbox-allergen:checked + label.color-Moluscos { border-color: #14b8a6; background-color: rgba(20, 184, 166, 0.25); color: #ccfbf1; }
+        .checkbox-allergen:checked + label.color-NONE { border-color: #10b981; background-color: rgba(16, 185, 129, 0.3); color: #a7f3d0; }
+        .checkbox-allergen:checked + label.color-VEGAN { border-color: #059669; background-color: rgba(5, 150, 105, 0.3); color: #a7f3d0; }
+        .checkbox-allergen:checked + label.color-VEG { border-color: #16a34a; background-color: rgba(22, 163, 74, 0.3); color: #bbf7d0; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col custom-scrollbar">
+
+    <!-- Header Navbar -->
+    <header class="sticky top-0 z-40 glass-panel border-b border-slate-700/50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-sky-500 flex items-center justify-center text-slate-950 font-bold text-xl shadow-md">
+                    <i class="fa-solid font-bold fa-utensils"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold tracking-wide text-white leading-tight">CADAQUÉS MADRID</h1>
+                    <p class="text-xs text-sky-400 font-medium">Control e Interactivo de Alérgenos 2026</p>
+                </div>
+            </div>
+
+            <!-- Navigation Tabs -->
+            <nav class="hidden md:flex space-x-2">
+                <button onclick="switchTab('practice')" id="nav-practice" class="px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center space-x-2 bg-sky-600 text-white shadow-md">
+                    <i class="fa-solid fa-bolt text-xs"></i>
+                    <span>Práctica Directa</span>
+                </button>
+                <button onclick="switchTab('exam')" id="nav-exam" class="px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-all flex items-center space-x-2">
+                    <i class="fa-solid fa-graduation-cap text-xs"></i>
+                    <span>Examen (10 Preguntas)</span>
+                </button>
+                <button onclick="switchTab('explorer')" id="nav-explorer" class="px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-all flex items-center space-x-2">
+                    <i class="fa-solid fa-book-open text-xs"></i>
+                    <span>Explorador de Carta (64)</span>
+                </button>
+            </nav>
+
+            <div class="flex items-center space-x-2">
+                <span class="text-xs bg-slate-800 text-slate-300 px-3 py-1.5 rounded-full border border-slate-700 flex items-center space-x-1">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span class="font-semibold text-emerald-400">64 Platos</span>
+                </span>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Bar -->
+        <div class="flex md:hidden border-t border-slate-800 text-xs font-medium text-center">
+            <button onclick="switchTab('practice')" id="mobile-nav-practice" class="flex-1 py-2.5 bg-sky-600 text-white font-semibold flex items-center justify-center space-x-1">
+                <i class="fa-solid fa-bolt"></i>
+                <span>Práctica</span>
+            </button>
+            <button onclick="switchTab('exam')" id="mobile-nav-exam" class="flex-1 py-2.5 text-slate-400 hover:bg-slate-800 flex items-center justify-center space-x-1">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span>Examen</span>
+            </button>
+            <button onclick="switchTab('explorer')" id="mobile-nav-explorer" class="flex-1 py-2.5 text-slate-400 hover:bg-slate-800 flex items-center justify-center space-x-1">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Carta</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8">
+
+        <!-- VIEW 1: PRÁCTICA DIRECTA -->
+        <section id="view-practice" class="space-y-6">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-slate-800/60 p-4 rounded-xl border border-slate-700/60">
+                <div>
+                    <h2 class="text-xl font-bold text-white flex items-center space-x-2">
+                        <i class="fa-solid fa-bolt text-amber-400"></i>
+                        <span>Modo Práctica Directa</span>
+                    </h2>
+                    <p class="text-sm text-slate-400">Selecciona los alérgenos presentes y comprueba tu respuesta al instante.</p>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-2">
+                    <select id="practice-category-filter" onchange="resetPracticeQuestion()" class="bg-slate-900 border border-slate-700 text-slate-200 text-sm rounded-lg px-3 py-2 focus:ring-2 focus:ring-sky-500">
+                        <option value="ALL">Todas las Categorías (64)</option>
+                        <option value="MARISCO">El Marisco del Día</option>
+                        <option value="MESA">Para Llenar la Mesa</option>
+                        <option value="COCINA">La Cocina sin Prisas</option>
+                        <option value="ALIOLI">Nuestros Aliolis</option>
+                        <option value="ARROZ">Arroces a la Leña</option>
+                        <option value="PESCADO">Del Mar a la Mesa</option>
+                        <option value="CARNE">Y las Carnes</option>
+                        <option value="ACOMPAÑAMIENTO">Acompañamientos</option>
+                        <option value="POSTRE">Pecados Inocentes (Postres)</option>
+                    </select>
+
+                    <button onclick="nextPracticeDish()" class="bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center space-x-2">
+                        <i class="fa-solid fa-shuffle"></i>
+                        <span>Siguiente Plato</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Practice Dish Container -->
+            <div id="practice-card" class="glass-panel rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+                <div class="absolute -top-12 -right-12 w-40 h-40 bg-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <!-- Dish Title Header -->
+                <div class="mb-6 pb-4 border-b border-slate-700/80 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <div>
+                        <span id="practice-dish-category" class="inline-block text-xs font-semibold uppercase tracking-wider text-sky-400 bg-sky-950/60 border border-sky-800 px-3 py-1 rounded-full mb-2">
+                            Categoría
+                        </span>
+                        <h3 id="practice-dish-name" class="text-2xl sm:text-3xl font-extrabold text-white">
+                            Cargando plato...
+                        </h3>
+                        <p id="practice-dish-en" class="text-sm text-slate-400 italic mt-0.5"></p>
+                    </div>
+
+                    <div class="flex items-center space-x-3">
+                        <button onclick="togglePracticeIngredients()" class="text-xs text-slate-400 hover:text-sky-300 underline flex items-center space-x-1">
+                            <i class="fa-solid fa-eye"></i>
+                            <span id="ingredients-toggle-txt">Ver Ingredientes</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Hidden Ingredients Dropdown -->
+                <div id="practice-ingredients-box" class="hidden mb-6 p-4 bg-slate-900/80 rounded-xl border border-slate-700 text-xs text-slate-300 leading-relaxed">
+                    <strong class="text-sky-400 block mb-1"><i class="fa-solid fa-list-check mr-1"></i> Lista de Ingredientes Oficiales:</strong>
+                    <span id="practice-ingredients-list">...</span>
+                </div>
+
+                <!-- Allergen Checklist Form -->
+                <p class="text-sm font-medium text-slate-300 mb-4">
+                    Marca únicamente los alérgenos presentes o trazas oficiales según la ficha de CADAQUÉS MADRID:
+                </p>
+
+                <!-- Grid of Allergens -->
+                <div id="practice-allergens-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 mb-8">
+                    <!-- Dynamic rendering of 14 allergens + 2 suitability flags -->
+                </div>
+
+                <!-- Feedback Display Box -->
+                <div id="practice-feedback" class="hidden mb-6 p-4 rounded-xl text-sm leading-relaxed border animate-fade-in">
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-700/80">
+                    <div class="text-xs text-slate-400 flex items-center space-x-4">
+                        <span>Aciertos en sesión: <strong id="practice-score-correct" class="text-emerald-400 font-bold">0</strong></span>
+                        <span>Fallos: <strong id="practice-score-incorrect" class="text-rose-400 font-bold">0</strong></span>
+                    </div>
+
+                    <div class="flex items-center space-x-3">
+                        <button id="btn-check-practice" onclick="checkPracticeAnswer()" class="bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-bold px-6 py-2.5 rounded-xl text-sm shadow-lg shadow-sky-500/20 transition-all flex items-center space-x-2">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span>Comprobar Respuesta</span>
+                        </button>
+                        <button id="btn-next-practice" onclick="nextPracticeDish()" class="hidden bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-6 py-2.5 rounded-xl text-sm shadow-lg shadow-emerald-600/20 transition-all flex items-center space-x-2">
+                            <span>Siguiente Plato</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW 2: MODO EXAMEN -->
+        <section id="view-exam" class="hidden space-y-6">
+            <!-- Exam Intro Card -->
+            <div id="exam-intro" class="glass-panel p-8 rounded-2xl text-center max-w-2xl mx-auto space-y-6">
+                <div class="w-16 h-16 bg-sky-500/20 text-sky-400 rounded-2xl flex items-center justify-center mx-auto text-3xl">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-white">Examen Interactivo por Iconos</h2>
+                    <p class="text-slate-400 text-sm mt-2 leading-relaxed">
+                        Evaluación oficial simulada de <strong>10 platos aleatorios</strong> de Cadaqués Madrid (edición 2026).
+                        <br>En cada pregunta deberás <strong>marcar directamente sobre la rejilla de iconos</strong> los alérgenos presentes, la opción de Libre de Alérgenos o las aptitudes dietéticas.
+                    </p>
+                </div>
+
+                <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700/60 text-xs text-slate-300 text-left space-y-2">
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-check text-emerald-400"></i>
+                        <span>10 preguntas interactivas basadas en los 64 platos reales de la carta.</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-check text-emerald-400"></i>
+                        <span>Selección sobre iconos a color de alérgenos + Libre de Alérgenos + Vegano/Vegetariano.</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-check text-emerald-400"></i>
+                        <span>Calificación inmediata y desglose detallado de fallos y aciertos al finalizar.</span>
+                    </div>
+                </div>
+
+                <button onclick="startExam()" class="w-full sm:w-auto bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-slate-950 font-bold px-8 py-3.5 rounded-xl shadow-lg shadow-emerald-500/20 transition-all text-base inline-flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-play"></i>
+                    <span>Comenzar Examen de Iconos</span>
+                </button>
+            </div>
+
+            <!-- Active Exam Card -->
+            <div id="exam-active" class="hidden glass-panel rounded-2xl p-6 sm:p-8 space-y-6 relative">
+                <!-- Progress Header -->
+                <div class="flex items-center justify-between text-xs font-semibold text-slate-400 border-b border-slate-700 pb-4">
+                    <span class="flex items-center space-x-2">
+                        <span class="text-sky-400">Pregunta <strong id="exam-q-current" class="text-white text-base">1</strong> de 10</span>
+                    </span>
+                    <div class="w-1/3 bg-slate-800 h-2.5 rounded-full overflow-hidden border border-slate-700">
+                        <div id="exam-progress-bar" class="bg-sky-500 h-full w-10 transition-all duration-300"></div>
+                    </div>
+                </div>
+
+                <!-- Dish Information Header for Question -->
+                <div class="pb-2 border-b border-slate-800">
+                    <span id="exam-q-category" class="text-xs font-semibold uppercase text-amber-400 bg-amber-950/40 border border-amber-800 px-2.5 py-0.5 rounded-md">
+                        Categoría
+                    </span>
+                    <h3 id="exam-q-title" class="text-2xl sm:text-3xl font-extrabold text-white mt-2">
+                        ¿Plato...?
+                    </h3>
+                    <p id="exam-q-subtitle" class="text-sm text-slate-400 italic mt-0.5"></p>
+                </div>
+
+                <p class="text-sm font-medium text-slate-300">
+                    Selecciona en los iconos todos los alérgenos presentes o marca <strong class="text-emerald-400">"LIBRE DE ALÉRGENOS"</strong> si no contiene ninguno:
+                </p>
+
+                <!-- Interactive Allergen Grid for Exam -->
+                <div id="exam-allergens-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+                    <!-- Rendered dynamically -->
+                </div>
+
+                <!-- Bottom Navigation inside Exam -->
+                <div class="flex items-center justify-end pt-4 border-t border-slate-700">
+                    <button id="btn-exam-next" onclick="submitExamAnswer()" class="bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-bold px-7 py-3 rounded-xl text-sm shadow-lg shadow-sky-500/20 transition-all flex items-center space-x-2">
+                        <span>Confirmar y Siguiente Pregunta</span>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Exam Results Summary Card -->
+            <div id="exam-results" class="hidden glass-panel rounded-2xl p-6 sm:p-8 space-y-8">
+                <div class="text-center space-y-3">
+                    <div id="exam-badge-icon" class="w-20 h-20 rounded-full flex items-center justify-center mx-auto text-4xl shadow-xl">
+                        🏆
+                    </div>
+                    <h2 id="exam-final-title" class="text-3xl font-extrabold text-white">Resultado del Examen</h2>
+                    <p id="exam-final-msg" class="text-slate-300 text-sm max-w-lg mx-auto leading-relaxed">
+                        Has completado la prueba de alérgenos de la carta de Cadaqués Madrid.
+                    </p>
+                    <div class="inline-flex items-center justify-center px-6 py-3 bg-slate-900/90 rounded-2xl border border-slate-700 space-x-3 text-lg">
+                        <span class="text-slate-400 text-sm">Puntuación Final:</span>
+                        <span id="exam-final-score" class="text-3xl font-black text-emerald-400">0 / 10</span>
+                    </div>
+                </div>
+
+                <!-- Review Mistakes Breakdown -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-bold text-white flex items-center space-x-2 border-b border-slate-700 pb-2">
+                        <i class="fa-solid fa-list-check text-sky-400"></i>
+                        <span>Desglose y Corrección Pregunta a Pregunta</span>
+                    </h3>
+
+                    <div id="exam-breakdown-list" class="space-y-4 max-h-96 overflow-y-auto custom-scrollbar pr-2">
+                        <!-- Exam details breakdown -->
+                    </div>
+                </div>
+
+                <!-- Restart Exam -->
+                <div class="flex justify-center pt-4">
+                    <button onclick="startExam()" class="bg-sky-600 hover:bg-sky-500 text-white font-bold px-8 py-3 rounded-xl text-sm transition-all flex items-center space-x-2 shadow-lg">
+                        <i class="fa-solid fa-rotate-right"></i>
+                        <span>Repetir Examen con Nuevas Preguntas</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW 3: EXPLORADOR DE CARTA COMPLETO -->
+        <section id="view-explorer" class="hidden space-y-6">
+            <!-- Filter Bar -->
+            <div class="glass-panel p-4 sm:p-6 rounded-2xl space-y-4">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <h2 class="text-xl font-bold text-white flex items-center space-x-2">
+                            <i class="fa-solid fa-book-open text-sky-400"></i>
+                            <span>Ficha Técnica y Carta Interactiva (64 Platos)</span>
+                        </h2>
+                        <p class="text-xs text-slate-400 mt-0.5">Consulta rápida para camareros y personal de cocina de Cadaqués Madrid 2026.</p>
+                    </div>
+
+                    <!-- Search Input -->
+                    <div class="relative w-full sm:w-72">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-slate-400 text-sm"></i>
+                        <input type="text" id="explorer-search" oninput="renderExplorerGrid()" placeholder="Buscar plato o ingrediente..." class="w-full bg-slate-900 border border-slate-700 text-white placeholder-slate-500 text-sm rounded-xl pl-9 pr-4 py-2 focus:ring-2 focus:ring-sky-500 focus:outline-none">
+                    </div>
+                </div>
+
+                <!-- Filter Chips -->
+                <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-700/60">
+                    <span class="text-xs text-slate-400 font-medium mr-1"><i class="fa-solid fa-filter"></i> Filtrar por:</span>
+                    
+                    <select id="explorer-category-filter" onchange="renderExplorerGrid()" class="bg-slate-900 border border-slate-700 text-slate-200 text-xs rounded-lg px-2.5 py-1.5">
+                        <option value="ALL">Todas las Categorías</option>
+                        <option value="MARISCO">El Marisco del Día</option>
+                        <option value="MESA">Para Llenar la Mesa</option>
+                        <option value="COCINA">La Cocina sin Prisas</option>
+                        <option value="ALIOLI">Nuestros Aliolis</option>
+                        <option value="ARROZ">Arroces a la Leña</option>
+                        <option value="PESCADO">Del Mar a la Mesa</option>
+                        <option value="CARNE">Y las Carnes</option>
+                        <option value="ACOMPAÑAMIENTO">Acompañamientos</option>
+                        <option value="POSTRE">Postres</option>
+                    </select>
+
+                    <select id="explorer-allergen-filter" onchange="renderExplorerGrid()" class="bg-slate-900 border border-slate-700 text-slate-200 text-xs rounded-lg px-2.5 py-1.5">
+                        <option value="ALL">Cualquier Alérgeno</option>
+                        <option value="Gluten">Gluten</option>
+                        <option value="Crustáceos">Crustáceos</option>
+                        <option value="Huevo">Huevo</option>
+                        <option value="Pescado">Pescado</option>
+                        <option value="Leche">Leche / Lácteos</option>
+                        <option value="Frutos con cáscara">Frutos de cáscara</option>
+                        <option value="Ajo">Ajo</option>
+                        <option value="Sulfitos">Sulfitos</option>
+                        <option value="Moluscos">Moluscos</option>
+                        <option value="Cerdo">Cerdo</option>
+                    </select>
+
+                    <button id="btn-filter-vegan" onclick="toggleDietFilter('vegan')" class="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 text-xs px-3 py-1.5 rounded-lg flex items-center space-x-1.5 transition-all">
+                        <i class="fa-solid fa-seedling text-emerald-400"></i>
+                        <span>Solo Veganos</span>
+                    </button>
+
+                    <button id="btn-filter-veg" onclick="toggleDietFilter('veg')" class="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 text-xs px-3 py-1.5 rounded-lg flex items-center space-x-1.5 transition-all">
+                        <i class="fa-solid fa-leaf text-green-400"></i>
+                        <span>Solo Vegetarianos</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dishes Cards Grid -->
+            <div id="explorer-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Dynamically rendered dishes -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal Dish Ingredient Detail -->
+    <div id="dish-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="glass-panel w-full max-w-xl rounded-2xl p-6 space-y-4 shadow-2xl border border-slate-700 relative animate-fade-in">
+            <button onclick="closeDishModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="modal-content">
+                <!-- Modal content filled dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Comprehensive Dataset for Cadaqués Madrid 2026 (64 dishes)
+        const ALLERGEN_KEYS = [
+            { id: 'Gluten', name: 'Gluten', icon: 'fa-wheat-awn', colorClass: 'color-Gluten', iconColor: 'text-amber-400', bgHover: 'hover:border-amber-400' },
+            { id: 'Crustáceos', name: 'Crustáceos', icon: 'fa-shrimp', colorClass: 'color-Crustáceos', iconColor: 'text-rose-400', bgHover: 'hover:border-rose-400' },
+            { id: 'Huevo', name: 'Huevo', icon: 'fa-egg', colorClass: 'color-Huevo', iconColor: 'text-yellow-400', bgHover: 'hover:border-yellow-400' },
+            { id: 'Pescado', name: 'Pescado', icon: 'fa-fish', colorClass: 'color-Pescado', iconColor: 'text-cyan-400', bgHover: 'hover:border-cyan-400' },
+            { id: 'Cacahuetes', name: 'Cacahuetes', icon: 'fa-cubes-stacked', colorClass: 'color-Cacahuetes', iconColor: 'text-orange-400', bgHover: 'hover:border-orange-400' },
+            { id: 'Soja', name: 'Soja', icon: 'fa-seedling', colorClass: 'color-Soja', iconColor: 'text-emerald-400', bgHover: 'hover:border-emerald-400' },
+            { id: 'Leche', name: 'Leche y deriv.', icon: 'fa-cow', colorClass: 'color-Leche', iconColor: 'text-blue-300', bgHover: 'hover:border-blue-400' },
+            { id: 'Frutos con cáscara', name: 'Frutos cáscara', icon: 'fa-tree', colorClass: 'color-Frutos', iconColor: 'text-amber-600', bgHover: 'hover:border-amber-500' },
+            { id: 'Apio', name: 'Apio', icon: 'fa-carrot', colorClass: 'color-Apio', iconColor: 'text-green-400', bgHover: 'hover:border-green-400' },
+            { id: 'Mostaza', name: 'Mostaza', icon: 'fa-jar', colorClass: 'color-Mostaza', iconColor: 'text-yellow-300', bgHover: 'hover:border-yellow-300' },
+            { id: 'Sésamo', name: 'Sésamo', icon: 'fa-ellipsis', colorClass: 'color-Sésamo', iconColor: 'text-orange-300', bgHover: 'hover:border-orange-300' },
+            { id: 'Ajo', name: 'Ajo', icon: 'fa-bong', colorClass: 'color-Ajo', iconColor: 'text-purple-400', bgHover: 'hover:border-purple-400' },
+            { id: 'Cerdo', name: 'Cerdo', icon: 'fa-bacon', colorClass: 'color-Cerdo', iconColor: 'text-pink-400', bgHover: 'hover:border-pink-400' },
+            { id: 'Sulfitos', name: 'Sulfitos', icon: 'fa-wine-glass', colorClass: 'color-Sulfitos', iconColor: 'text-violet-400', bgHover: 'hover:border-violet-400' },
+            { id: 'Altramuces', name: 'Altramuces', icon: 'fa-circle', colorClass: 'color-Altramuces', iconColor: 'text-lime-400', bgHover: 'hover:border-lime-400' },
+            { id: 'Moluscos', name: 'Moluscos', icon: 'fa-water', colorClass: 'color-Moluscos', iconColor: 'text-teal-400', bgHover: 'hover:border-teal-400' }
+        ];
+
+        const DISHES_DATA = [
+            // EL MARISCO DEL DIA
+            {
+                id: 1,
+                name: "Ostras Gillardeau n°2",
+                en: "Gillardeau oysters n°2",
+                category: "MARISCO",
+                categoryName: "El Marisco del Día",
+                allergens: ["Moluscos"],
+                traces: ["Gluten", "Frutos con cáscara"],
+                veg: false, vegan: false,
+                ingredients: "Ostras, limón, lima, algas (alga wakame, espagueti de mar, lechuga de mar, ogonori plano, sal marina)."
+            },
+            {
+                id: 2,
+                name: "Antxoas Karmelo Toja XL",
+                en: "Karmelo Toja XL anchovies",
+                category: "MARISCO",
+                categoryName: "El Marisco del Día",
+                allergens: ["Pescado"],
+                traces: [],
+                veg: false, vegan: false,
+                ingredients: "Anchoa (filete de anchoa, aceite de girasol, sal), aceite de oliva, perifollo."
+            },
+            {
+                id: 3,
+                name: "Almejas gallegas salteadas",
+                en: "Galician Clams",
+                category: "MARISCO",
+                categoryName: "El Marisco del Día",
+                allergens: ["Moluscos", "Ajo"],
+                traces: [],
+                veg: false, vegan: false,
+                ingredients: "Almejas, aceite de oliva virgen, ajo, sal, pimienta negra, guindilla roja seca, perejil."
+            },
+            {
+                id: 4,
+                name: "Navajas CAD",
+                en: "Razor clams CAD",
+                category: "MARISCO",
+                categoryName: "El Marisco del Día",
+                allergens: ["Moluscos", "Ajo"],
+                traces: [],
+                veg: false, vegan: false,
+                ingredients: "Navajas, aceite de oliva, pimienta negra, sal, cebollino."
+            },
+            {
+                id: 5,
+                name: "Mejillones picantitos",
+                en: "Spicy mussels",
+                category: "MARISCO",
+                categoryName: "El Marisco del Día",
+                allergens: ["Pescado", "Cerdo", "Sulfitos", "Moluscos", "Ajo"],
+                traces: ["Crustáceos", "Huevo", "Soja", "Leche", "Apio"],
+                veg: false, vegan: false,
+                ingredients: "Mejillones, sofrito cadaqués (cebolla, tomate, vino blanco, aceite, ajo, guindilla), caldo de roca (pescado de roca, cangrejo, galera, hinojo, vino blanco, pernod, perejil)."
+            },
+            {
+                id: 6,
+                name: "Gambas blancas salteadas",
+                en: "White shrimps",
+                category: "MARISCO",
+                categoryName: "El Marisco del Día",
+                allergens: ["Crustáceos", "Sulfitos", "Ajo"],
+                traces: [],
+                veg: false, vegan: false,
+                ingredients: "Gamba blanca (gamba, sal, antioxidantes E330, E225, E223), ajo, aceite de oliva virgen, guindilla roja, sal, pimienta negra, perejil."
+            },
+            {
+                id: 7,
+                name: "Gamba roja del Puerto de Roses",
+                en: "Red shrimp from the Port of Roses",
+                category: "MARISCO",
+                categoryName: "El Marisco del Día",
+                allergens: ["Crustáceos", "Sulfitos"],
+                traces: [],
+                veg: false, vegan: false,
+                ingredients: "Gamba roja (gamba, sal, antioxidantes E330, E225, E223), aceite de oliva virgen, sal gris."
+            },
+            {
+                id: 8,
+                name: "Cigalitas salteadas",
+                en: "Sautéed small langoustines",
+                category: "MARISCO",
+                categoryName: "El Marisco del Día",
+                allergens: ["Crustáceos", "Ajo"],
+                traces: [],
+                veg: false, vegan: false,
+                ingredients: "Cigala, aceite de oliva virgen, ajo, sal, pimienta negra, guindilla roja seca, perejil."
+            },
+            {
+                id: 9,
+                name: "Bogavante de Menorca a la parrilla",
+                en: "Chargrilled Menorca lobster",
+                category: "MARISCO",
+                categoryName: "El Marisco del Día",
+                allergens: ["Crustáceos"],
+                traces: [],
+                veg: false, vegan: false,
+                ingredients: "Bogavante, aceite de oliva virgen, sal gris."
+            },
+
+            // PARA LLENAR LA MESA
+            {
+                id: 10,
+                name: "Xatonada del Garraf",
+                en: "Garraf's Xatonada",
+                category: "MESA",
+                categoryName: "Para Llenar la Mesa",
+                allergens: ["Pescado", "Frutos con cáscara", "Sulfitos", "Ajo"],
+                traces: ["Gluten"],
+                veg: false, vegan: false,
+                ingredients: "Escarola, romesco (almendra, avellana, pan, tomate, vinagre, ajo), anchoa en salazón, bacalao, mojama de atún, aceituna arbequina, aceituna kalamata."
+            },
+            {
+                id: 11,
+                name: "Ensaladilla rusa con ventresca de bonito",
+                en: "Russian salad with tuna belly",
+                category: "MESA",
+                categoryName: "Para Llenar la Mesa",
+                allergens: ["Gluten", "Huevo", "Pescado", "Soja", "Sulfitos"],
+                traces: [],
+                veg: false, vegan: false,
+                ingredients: "Patata, zanahoria, filetes melva, mayonesa (aceite de soja, yema de huevo), ventresca de atún, pimiento, cañas de pan feo, pan soplado."
+            },
+            {
+                id: 12,
+                name: "Tomate de caserío de huerta propia",
+                en: "Farmhouse tomatoes from our garden",
+                category: "MESA",
+                categoryName: "Para Llenar la Mesa",
+                allergens: [],
+                traces: [],
+                veg: true, vegan: true,
+                ingredients: "Tomate, aceite de oliva virgen extra, guindilla de Ibarra, sal gris."
+            },
+            {
+                id: 13,
+                name: "Guindillas de Ibarra frescas y fritas",
+                en: "Fried chilli peppers from Ibarra",
+                category: "MESA",
+                categoryName: "Para Llenar la Mesa",
+                allergens: [],
+                traces: [],
+                veg: true, vegan: true,
+                ingredients: "Guindillas frescas de Ibarra, aceite de oliva virgen extra, sal."
+            },
+            {
+                id: 14,
+                name: "Coca de recapte con sardinas anchoadas",
+                en: "Coca de recapte with anchovied sardines",
+                category: "MESA",
+                categoryName: "Para Llenar la Mesa",
+                allergens: ["Gluten", "Pescado", "Ajo"],
+                traces: ["Soja"],
+                veg: false, vegan: false,
+                ingredients: "Base flamkuchen (harina de trigo), escalivada (cebolla, pimientos, berenjena), sardina anchoada, cebollino."
+            },
+            {
+                id: 15,
+                name: "Carpaccio de gamba roja de Roses",
+                en: "Carpaccio of red shrimp from Roses",
+                category: "MESA",
+                categoryName: "Para Llenar la Mesa",
+                allergens: ["Crustáceos", "Mostaza", "Ajo", "Sulfitos"],
+                traces: ["Gluten", "Apio"],
+                veg: false, vegan: false,
+                ingredients: "Carpaccio de gamba roja, base de tomate, vinagre de sidra, mermelada de tomate con curry (mostaza), chalota, tomate seco."
+            },
+            {
+                id: 16,
+                name: "Tartar de corvina con lentejas de Puy",
+                en: "Sea bass tartare with Puy lentils",
+                category: "MESA",
+                categoryName: "Para Llenar la Mesa",
+                allergens: ["Pescado", "Mostaza", "Ajo", "Sulfitos"],
+                traces: [],
+                veg: false, vegan: false,
+                ingredients: "Corvina, lentejas verdes, lima, chalota, tomate seco, pepinillo, mostaza, aceite de oliva virgen, cebollino."
+            },
+            {
+                id: 17,
+                name: "Anguila ahumada",
+                en: "Smoked eel",
+                category: "MESA",
+                categoryName: "Para Llenar la Mesa",
+                allergens: ["Pescado", "Leche", "Cerdo", "Ajo", "Sulfitos"],
+                traces: [],
+                veg: false, vegan: false,
+                ingredients: "Anguila ahumada, fumet de roca, fondo oscuro de ternera y pollo (con lactosa), salsa sriracha, espárragos verdes, rábano."
+            },
+            {
+                id: 18,
+                name: "Tartar de vaca vieja con corazón de atún de Barbate",
+                en: "Matured beef tartare with tuna heart",
+                category: "MESA",
+                categoryName: "Para Llenar la Mesa",
+                allergens: ["Gluten", "Huevo", "Pescado", "Mostaza", "Ajo", "Sulfitos"],
+                traces: [],
+                veg: false, vegan: false,
+                ingredients: "Carne de vaca vieja, huevo, corazón de atún, alcaparras, pepinillos, salsa lea perrins (anchoas, vinagre de malta), pimiento Espelette, mostaza."
+            },
+            {
+                id: 19,
+                name: "Puerritos a la parrilla con romesco",
+                en: "Chargrilled baby leeks with romesco sauce",
+                category: "MESA",
+                categoryName: "Para Llenar la Mesa",
+                allergens: ["Gluten", "Huevo", "Frutos con cáscara", "Ajo", "Sulfitos"],
+                traces: [],
+                veg: true, vegan: false, // Muselina contiene huevo
+                ingredients: "Puerro, salsa romesco (tomate, almendra, avellana, pan de trigo, vinagre), muselina de romesco (huevo)."
+            },
+            {
+                id: 20,
+                name: "Croquetas de jamón ibérico",
+                en: "Iberian ham croquettes",
+                category: "MESA",
+                categoryName: "Para Llenar la Mesa",
+                allergens: ["Gluten", "Huevo", "Leche", "Cerdo"],
+                traces: ["Crustáceos", "Soja", "Frutos con cáscara", "Apio"],
+                veg: false, vegan: false,
+                ingredients: "Leche entera, pan rallado (trigo), gelatina de cerdo, huevo líquido, mantequilla, jamón ibérico, harina."
+            },
+            {
+                id: 21,
+                name: "Tortilla jugosa con romescada de gambas",
+                en: "Juicy omelette with shrimp romescada",
+                category: "MESA",
+                categoryName: "Para Llenar la Mesa",
+                allergens: ["Gluten", "Crustáceos", "Huevo", "Pescado", "Frutos con cáscara", "Ajo", "Sulfitos"],
+                traces: [],
+                veg: false, vegan: false,
+                ingredients: "Tortilla de patata y cebolla, romescada (romesco con almendra, avellana, pan trigo, vino blanco, caldo de roca), gamba roja, huevos."
+            },
+            {
+                id: 22,
+                name: "Ventresca de cerdo ibérico con bonito de Ondarroa",
+                en: "Pork belly with tartare of bonito belly",
+                category: "MESA",
+                categoryName: "Para Llenar la Mesa",
+                allergens: ["Pescado", "Cerdo", "Ajo"],
+                traces: [],
+                veg: false, vegan: false,
+                ingredients: "Bonito, panceta marinada de cerdo, aceite de oliva virgen, lima, cebolla confitada, tomate maduro, chile habanero."
+            },
+
+            // LA COCINA SIN PRISAS
+            {
+                id: 23,
+                name: "Alubias del ganxet con calamares",
+                en: "Ganxet white beans with squid",
+                category: "COCINA",
+                categoryName: "La Cocina sin Prisas",
+                allergens: ["Pescado", "Frutos con cáscara", "Ajo", "Sulfitos", "Moluscos"],
+                traces: ["Gluten"],
+                veg: false, vegan: false,
+                ingredients: "Alubias del ganxet, calamar, caldo de roca, sofrito cadaqués, picada (avellanas tostadas, ajo, carne de ñoras, perejil)."
+            },
+            {
+                id: 24,
+                name: "Cap i pota con garbanzos",
+                en: "Cap i Pota stew with chickpeas",
+                category: "COCINA",
+                categoryName: "La Cocina sin Prisas",
+                allergens: ["Ajo", "Cerdo", "Sulfitos"],
+                traces: [],
+                veg: false, vegan: false,
+                ingredients: "Patas de ternera, cabeza de ternera, chorizo de cerdo, panceta de cerdo salada, garbanzos, tomate, ajo, pimentón."
+            },
+            {
+                id: 25,
+                name: "Caldereta de pescados",
+                en: "Fish and potato stew",
+                category: "COCINA",
+                categoryName: "La Cocina sin Prisas",
+                allergens: ["Crustáceos", "Pescado", "Ajo", "Sulfitos", "Moluscos"],
+                traces: ["Gluten"],
+                veg: false, vegan: false,
+                ingredients: "Pescado de roca, base de caldereta, gamba, patata, caldo de roca, gamba roja, mejillones, almeja."
+            },
+            {
+                id: 26,
+                name: "Bacalao en samfaina",
+                en: "Cod with ratatouille",
+                category: "COCINA",
+                categoryName: "La Cocina sin Prisas",
+                allergens: ["Gluten", "Pescado", "Apio"],
+                traces: [],
+                veg: false, vegan: false,
+                ingredients: "Bacalao, pisto de verduras (cebolla, calabacín, pimientos, tomate), fondo de verduras y bacalao (con apio), harina de trigo."
+            },
+            {
+                id: 27,
+                name: "Albóndigas con sepia",
+                en: "Meatballs with cuttlefish",
+                category: "COCINA",
+                categoryName: "La Cocina sin Prisas",
+                allergens: ["Gluten", "Crustáceos", "Huevo", "Pescado", "Leche", "Ajo", "Cerdo", "Sulfitos", "Moluscos"],
+                traces: ["Soja", "Frutos con cáscara", "Apio"],
+                veg: false, vegan: false,
+                ingredients: "Cadera de vaca, panceta de cerdo, sepia, huevo, leche, harina de trigo, pan de payés, caldo de roca, vino blanco."
+            },
+            {
+                id: 28,
+                name: "Pollo casero como el de la yaya María",
+                en: "Homemade chicken like granny Maria",
+                category: "COCINA",
+                categoryName: "La Cocina sin Prisas",
+                allergens: ["Gluten", "Huevo", "Frutos con cáscara", "Ajo", "Sulfitos"],
+                traces: ["Soja", "Leche"],
+                veg: false, vegan: false,
+                ingredients: "Pollo, vino tinto, picada (avellanas, ajo, ñoras), huevo, hígado de pollo, cognac, chocolate negro, pan rústico de trigo/centeno."
+            },
+
+            // NUESTROS ALIOLIS
+            {
+                id: 29,
+                name: "Alioli tradicional",
+                en: "Traditional aioli",
+                category: "ALIOLI",
+                categoryName: "Nuestros Aliolis",
+                allergens: ["Huevo", "Ajo"],
+                traces: [],
+                veg: true, vegan: false,
+                ingredients: "Aceite de oliva virgen extra, pasta de ajo, sal, huevos."
+            },
+            {
+                id: 30,
+                name: "Alioli de membrillo",
+                en: "Quince aioli",
+                category: "ALIOLI",
+                categoryName: "Nuestros Aliolis",
+                allergens: ["Huevo", "Ajo"],
+                traces: [],
+                veg: true, vegan: false,
+                ingredients: "Aceite de oliva virgen extra, dulce de membrillo, pasta de ajo, sal, huevos."
+            },
+            {
+                id: 31,
+                name: "Alioli con chile chipotle",
+                en: "Chipotle aioli",
+                category: "ALIOLI",
+                categoryName: "Nuestros Aliolis",
+                allergens: ["Huevo", "Ajo"],
+                traces: [],
+                veg: true, vegan: false,
+                ingredients: "Aceite de oliva virgen, chile chipotle, pasta de ajo, huevos, sal."
+            },
+
+            // ARROCES A LA LEÑA
+            {
+                id: 32,
+                name: "Arroz de bacalao con verduras",
+                en: "Rice with cod and vegetables",
+                category: "ARROZ",
+                categoryName: "Arroces a la Leña",
+                allergens: ["Pescado", "Apio", "Ajo"],
+                traces: [],
+                veg: false, vegan: false,
+                ingredients: "Arroz, fondo de verduras y bacalao (con apio), bacalao, sofrito cadaqués, pimiento rojo, ajo, espárrago verde, azafrán."
+            },
+            {
+                id: 33,
+                name: "Arroz 'brut' de sepia, rape y almejas",
+                en: "'Brut' rice with cuttlefish, monkfish and seafood",
+                category: "ARROZ",
+                categoryName: "Arroces a la Leña",
+                allergens: ["Crustáceos", "Huevo", "Pescado", "Leche", "Ajo", "Sulfitos", "Moluscos"],
+                traces: ["Gluten", "Soja", "Frutos con cáscara", "Apio"],
+                veg: false, vegan: false,
+                ingredients: "Arroz, caldo de roca, cola de rape, tubo de pota, tinta de sepia, mantequilla, almeja, sepia, sofrito cadaqués, alioli (huevo)."
+            },
+            {
+                id: 34,
+                name: "Arroz en cazuela de bogavante de Menorca",
+                en: "Rice in casserole with lobster from Menorca",
+                category: "ARROZ",
+                categoryName: "Arroces a la Leña",
+                allergens: ["Crustáceos", "Pescado", "Frutos con cáscara", "Ajo", "Sulfitos"],
+                traces: ["Gluten"],
+                veg: false, vegan: false,
+                ingredients: "Arroz, caldo de roca, bogavante, sofrito cadaqués, picada (avellanas, ajo, ñoras), cognac, azafrán."
+            },
+            {
+                id: 35,
+                name: "Arroz de pato con salsifíes",
+                en: "Rice with duck and salsify",
+                category: "ARROZ",
+                categoryName: "Arroces a la Leña",
+                allergens: ["Frutos con cáscara", "Ajo"],
+                traces: ["Gluten"],
+                veg: false, vegan: false,
+                ingredients: "Arroz, caldo de pollo, magret de pato, salsifíes, picada (avellanas, ajo, ñoras), tomillo."
+            },
+            {
+                id: 36,
+                name: "Arroz de conejo y caracoles El Pinós",
+                en: "Rice with rabbit and snails, El Pinós style",
+                category: "ARROZ",
+                categoryName: "Arroces a la Leña",
+                allergens: ["Frutos con cáscara", "Ajo", "Moluscos"],
+                traces: ["Gluten"],
+                veg: false, vegan: false,
+                ingredients: "Arroz, caldo de pollo, caracoles, conejo, picada (avellanas, ajo, ñoras, hígado de conejo), romero."
+            },
+            {
+                id: 37,
+                name: "Arroz de gamba roja",
+                en: "Red prawn rice",
+                category: "ARROZ",
+                categoryName: "Arroces a la Leña",
+                allergens: ["Crustáceos", "Ajo", "Sulfitos"],
+                traces: [],
+                veg: false, vegan: false,
+                ingredients: "Arroz, caldo de gamba roja (cabezas de gamba con sulfitos), gamba roja, sofrito cadaqués, carne de ñoras."
+            },
+            {
+                id: 38,
+                name: "Arroz de Cadaqués",
+                en: "Cadaqués rice",
+                category: "ARROZ",
+                categoryName: "Arroces a la Leña",
+                allergens: ["Crustáceos", "Pescado", "Ajo", "Sulfitos", "Moluscos"],
+                traces: ["Gluten"],
+                veg: false, vegan: false,
+                ingredients: "Arroz, caldo de roca, pescado de roca, sofrito cadaqués, calamar, mejillones, almeja, melsa de sepia."
+            },
+            {
+                id: 39,
+                name: "Arroz de verduras con coliflor y judía verde",
+                en: "Seasonal vegetable rice with cauliflower",
+                category: "ARROZ",
+                categoryName: "Arroces a la Leña",
+                allergens: ["Apio", "Ajo", "Sulfitos"],
+                traces: [],
+                veg: true, vegan: true,
+                ingredients: "Arroz, fondo de verduras y champiñones (con apio, vino blanco), salsifíes, sofrito cadaqués, coliflor, judías verdes, espárragos."
+            },
+
+            // DEL MAR A LA MESA
+            {
+                id: 40,
+                name: "Rodaballo",
+                en: "Turbot",
+                category: "PESCADO",
+                categoryName: "Del Mar a la Mesa",
+                allergens: ["Pescado", "Ajo", "Sulfitos"],
+                traces: [],
+                veg: false, vegan: false,
+                ingredients: "Rodaballo, aliño de pescado (txakoli), donostiarra (aceite, ajo, guindilla, vinagre de sidra)."
+            },
+            {
+                id: 41,
+                name: "Lenguado",
+                en: "Sole",
+                category: "PESCADO",
+                categoryName: "Del Mar a la Mesa",
+                allergens: ["Pescado", "Ajo", "Sulfitos"],
+                traces: [],
+                veg: false, vegan: false,
+                ingredients: "Lenguado, refrito donostiarra (aceite de oliva, ajo, guindilla roja, vinagre de sidra)."
+            },
+            {
+                id: 42,
+                name: "Rape",
+                en: "Monkfish",
+                category: "PESCADO",
+                categoryName: "Del Mar a la Mesa",
+                allergens: ["Pescado", "Ajo", "Sulfitos"],
+                traces: [],
+                veg: false, vegan: false,
+                ingredients: "Rape, refrito donostiarra (aceite de oliva extra virgen, ajo, guindilla, vinagre de sidra)."
+            },
+            {
+                id: 43,
+                name: "Besugo",
+                en: "Sea bream",
+                category: "PESCADO",
+                categoryName: "Del Mar a la Mesa",
+                allergens: ["Pescado", "Ajo", "Sulfitos"],
+                traces: [],
+                veg: false, vegan: false,
+                ingredients: "Besugo, aliño de pescado (txakoli), donostiarra (aceite, ajo, guindilla, vinagre de sidra)."
+            },
+
+            // Y LAS CARNES
+            {
+                id: 44,
+                name: "Entrecôte de vaca vieja",
+                en: "Mature-beef entrecôte",
+                category: "CARNE",
+                categoryName: "Y las Carnes",
+                allergens: [],
+                traces: [],
+                veg: false, vegan: false,
+                ingredients: "Entrecôte de vaca vieja, sal."
+            },
+            {
+                id: 45,
+                name: "Txuleta de cerdo 'Pio Negro' madurada",
+                en: "Matured 'Pio Negro' pork chop",
+                category: "CARNE",
+                categoryName: "Y las Carnes",
+                allergens: ["Cerdo"],
+                traces: [],
+                veg: false, vegan: false,
+                ingredients: "Txuleta de cerdo pío negro, sal."
+            },
+            {
+                id: 46,
+                name: "Magret de pato con ratafia, ciruelas y jengibre",
+                en: "Duck breast with ratafia sauce",
+                category: "CARNE",
+                categoryName: "Y las Carnes",
+                allergens: ["Leche", "Frutos con cáscara"],
+                traces: [],
+                veg: false, vegan: false,
+                ingredients: "Magret de pato, salsa de ratafia (fondo oscuro ternera/pollo con lactosa, ratafia con nueces tiernas), ciruela, manzana caramelizada."
+            },
+            {
+                id: 47,
+                name: "Chuletillas de cordero Pirineo 'al sarmiento'",
+                en: "Lamb cutlets Pyrenees style",
+                category: "CARNE",
+                categoryName: "Y las Carnes",
+                allergens: ["Huevo", "Ajo"],
+                traces: [],
+                veg: false, vegan: false,
+                ingredients: "Cordero, aceite de oliva virgen, alioli (aceite de oliva, pasta de ajo, sal, huevos)."
+            },
+
+            // ACOMPAÑAMIENTOS
+            {
+                id: 48,
+                name: "Lechuga con cebolleta de Hernani",
+                en: "Lettuce from Hernani with spring onions",
+                category: "ACOMPAÑAMIENTO",
+                categoryName: "Acompañamientos",
+                allergens: ["Sulfitos"],
+                traces: [],
+                veg: true, vegan: true,
+                ingredients: "Lechuga vasca, cebolleta, aceite de oliva virgen extra, vinagre de sidra (sulfitos), sal."
+            },
+            {
+                id: 49,
+                name: "Guindillas de Ibarra fritas (Guarnición)",
+                en: "Fried chilli peppers from Ibarra",
+                category: "ACOMPAÑAMIENTO",
+                categoryName: "Acompañamientos",
+                allergens: [],
+                traces: [],
+                veg: true, vegan: true,
+                ingredients: "Guindillas frescas de Ibarra, aceite de oliva virgen extra, sal."
+            },
+            {
+                id: 50,
+                name: "Alubias del Ganxet (Acompañamiento)",
+                en: "Ganxet white beans side",
+                category: "ACOMPAÑAMIENTO",
+                categoryName: "Acompañamientos",
+                allergens: ["Ajo"],
+                traces: [],
+                veg: true, vegan: true,
+                ingredients: "Alubias del ganxet, ajo, aceite de oliva virgen, perejil."
+            },
+            {
+                id: 51,
+                name: "Patatas fritas artesanas",
+                en: "Homemade potato wedges",
+                category: "ACOMPAÑAMIENTO",
+                categoryName: "Acompañamientos",
+                allergens: ["Ajo"],
+                traces: [],
+                veg: true, vegan: true,
+                ingredients: "Patatas, aceite de girasol, aceite de oliva virgen extra, sal, ajo."
+            },
+            {
+                id: 52,
+                name: "Escalivada CAD",
+                en: "Escalivada CAD",
+                category: "ACOMPAÑAMIENTO",
+                categoryName: "Acompañamientos",
+                allergens: [],
+                traces: [],
+                veg: true, vegan: true,
+                ingredients: "Pimiento rojo, pimiento verde, cebolla, berenjena, aceite de oliva virgen, sal gris."
+            },
+            {
+                id: 53,
+                name: "Patatas panadera",
+                en: "Baker's style roasted potatoes",
+                category: "ACOMPAÑAMIENTO",
+                categoryName: "Acompañamientos",
+                allergens: [],
+                traces: [],
+                veg: true, vegan: true,
+                ingredients: "Patatas, aceite de oliva virgen, aceite de girasol, cebolla, pimiento verde, sal, pimienta negra."
+            },
+            {
+                id: 54,
+                name: "Espárragos trigueros",
+                en: "Wild asparagus",
+                category: "ACOMPAÑAMIENTO",
+                categoryName: "Acompañamientos",
+                allergens: [],
+                traces: [],
+                veg: true, vegan: true,
+                ingredients: "Espárragos trigueros, aceite de oliva virgen, sal gris."
+            },
+            {
+                id: 55,
+                name: "Pan artesano de masa madre (48h)",
+                en: "Home-made sourdough bread",
+                category: "ACOMPAÑAMIENTO",
+                categoryName: "Acompañamientos",
+                allergens: ["Gluten"],
+                traces: [],
+                veg: true, vegan: true,
+                ingredients: "Harina de trigo, agua, masa madre (gluten), sal, harina de malta de cebada, germen de trigo."
+            },
+
+            // PECADOS INOCENTES (POSTRES)
+            {
+                id: 56,
+                name: "Crema catalana quemadita CAD",
+                en: "Catalan crème brûlée CAD",
+                category: "POSTRE",
+                categoryName: "Pecados Inocentes",
+                allergens: ["Gluten", "Huevo", "Soja", "Leche"],
+                traces: [],
+                veg: true, vegan: false,
+                ingredients: "Leche, nata, huevo, azúcar, limón, maizena, canela, barquillos (harina de trigo, lecitina de soja), vainilla."
+            },
+            {
+                id: 57,
+                name: "Flan, flan",
+                en: "Flan, flan",
+                category: "POSTRE",
+                categoryName: "Pecados Inocentes",
+                allergens: ["Huevo", "Leche"],
+                traces: [],
+                veg: true, vegan: false,
+                ingredients: "Leche, azúcar, huevos, limón, vainilla."
+            },
+            {
+                id: 58,
+                name: "El tap de Cadaqués un poco borracho",
+                en: "El tap de Cadaqués, a bit boozy",
+                category: "POSTRE",
+                categoryName: "Pecados Inocentes",
+                allergens: ["Gluten", "Huevo", "Leche", "Frutos con cáscara"],
+                traces: [],
+                veg: true, vegan: false,
+                ingredients: "Huevo, azúcar, harina de trigo, almendra molida cruda, almíbar de ron, nata avainillada (nata, azúcar)."
+            },
+            {
+                id: 59,
+                name: "Xuixo de crema con chocolate caliente",
+                en: "Xuixo with warm chocolate sauce",
+                category: "POSTRE",
+                categoryName: "Pecados Inocentes",
+                allergens: ["Gluten", "Huevo", "Soja", "Leche"],
+                traces: [],
+                veg: true, vegan: false,
+                ingredients: "Xuixo (harina de trigo, mantequilla, leche entera, huevos), crema pastelera (leche, nata, huevo, canela), chocolate negro (lecitina soja)."
+            },
+            {
+                id: 60,
+                name: "El corte de nata de toda la vida",
+                en: "Traditional ice cream sandwich",
+                category: "POSTRE",
+                categoryName: "Pecados Inocentes",
+                allergens: ["Gluten", "Soja", "Leche"],
+                traces: [],
+                veg: true, vegan: false,
+                ingredients: "Corte de nata (leche desnatada, nata fresca, lactosa), galleta oblea (harina de trigo, lecitina de soja)."
+            },
+            {
+                id: 61,
+                name: "Brazo de gitano",
+                en: "Swiss roll",
+                category: "POSTRE",
+                categoryName: "Pecados Inocentes",
+                allergens: ["Gluten", "Huevo", "Leche"],
+                traces: [],
+                veg: true, vegan: false,
+                ingredients: "Nata, azúcar, clara y yema de huevo pasteurizada, harina de trigo, almidón de maíz, mermelada de arándanos."
+            },
+            {
+                id: 62,
+                name: "Tarta de queso de leche de oveja latxa",
+                en: "Cheesecake made with latxa sheep milk",
+                category: "POSTRE",
+                categoryName: "Pecados Inocentes",
+                allergens: ["Gluten", "Huevo", "Soja", "Leche", "Sulfitos"],
+                traces: [],
+                veg: true, vegan: false,
+                ingredients: "Queso blanco de vaca, queso fresco de oveja, nata, galleta (harina trigo, lactosa, lecitina soja, metabisulfito E223), yema de huevo, mantequilla."
+            },
+            {
+                id: 63,
+                name: "Chocolate, el 'terroir' de Cadaqués",
+                en: "Chocolate, Cadaqués terroir",
+                category: "POSTRE",
+                categoryName: "Pecados Inocentes",
+                allergens: ["Soja", "Leche"],
+                traces: [],
+                veg: true, vegan: false,
+                ingredients: "Terroir de chocolate (nata líquida, cobertura chocolate negro con lecitina de soja), aceite de oliva virgen, cacao en polvo."
+            },
+            {
+                id: 64,
+                name: "Trufas al Sagardoz",
+                en: "Truffles with Sagardoz liqueur",
+                category: "POSTRE",
+                categoryName: "Pecados Inocentes",
+                allergens: ["Soja", "Leche"],
+                traces: [],
+                veg: true, vegan: false,
+                ingredients: "Chocolate negro (cobertura con lecitina de soja), nata líquida UHT, azúcar invertido, mantequilla, licor Sagardoz, cacao en polvo."
+            }
+        ];
+
+        let currentPracticeDish = null;
+        let practiceStats = { correct: 0, incorrect: 0 };
+        let activeTab = 'practice';
+
+        // Exam State Variables
+        let examQuestions = [];
+        let currentExamIndex = 0;
+        let examUserAnswers = [];
+        let examScore = 0;
+
+        // Explorer State
+        let activeDietFilter = null; // 'vegan' | 'veg' | null
+
+        function playFeedbackSound(isSuccess) {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+
+                if (isSuccess) {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, ctx.currentTime); // C5
+                    osc.frequency.exponentialRampToValueAtTime(659.25, ctx.currentTime + 0.15); // E5
+                    gain.gain.setValueAtTime(0.2, ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
+                    osc.start();
+                    osc.stop(ctx.currentTime + 0.3);
+                } else {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, ctx.currentTime); // A3
+                    osc.frequency.exponentialRampToValueAtTime(140, ctx.currentTime + 0.2);
+                    gain.gain.setValueAtTime(0.2, ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
+                    osc.start();
+                    osc.stop(ctx.currentTime + 0.3);
+                }
+            } catch (e) {
+                // Audio context fallbacks silently
+            }
+        }
+
+        function switchTab(tabId) {
+            activeTab = tabId;
+            ['practice', 'exam', 'explorer'].forEach(t => {
+                const navBtn = document.getElementById(`nav-${t}`);
+                const mNavBtn = document.getElementById(`mobile-nav-${t}`);
+                const viewSec = document.getElementById(`view-${t}`);
+
+                if (t === tabId) {
+                    viewSec.classList.remove('hidden');
+                    if (navBtn) {
+                        navBtn.className = "px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center space-x-2 bg-sky-600 text-white shadow-md";
+                    }
+                    if (mNavBtn) {
+                        mNavBtn.className = "flex-1 py-2.5 bg-sky-600 text-white font-semibold flex items-center justify-center space-x-1";
+                    }
+                } else {
+                    viewSec.classList.add('hidden');
+                    if (navBtn) {
+                        navBtn.className = "px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-all flex items-center space-x-2";
+                    }
+                    if (mNavBtn) {
+                        mNavBtn.className = "flex-1 py-2.5 text-slate-400 hover:bg-slate-800 flex items-center justify-center space-x-1";
+                    }
+                }
+            });
+
+            if (tabId === 'explorer') {
+                renderExplorerGrid();
+            }
+        }
+
+        function loadPracticeGrid() {
+            const container = document.getElementById('practice-allergens-grid');
+            container.innerHTML = '';
+
+            // Render 16 allergens with specific colors
+            ALLERGEN_KEYS.forEach(alg => {
+                const div = document.createElement('div');
+                div.className = "relative";
+                div.innerHTML = `
+                    <input type="checkbox" id="chk-prc-${alg.id}" value="${alg.id}" class="checkbox-allergen hidden">
+                    <label for="chk-prc-${alg.id}" class="${alg.colorClass} flex flex-col items-center justify-center p-3 bg-slate-900/80 border border-slate-700/80 ${alg.bgHover} rounded-xl cursor-pointer text-slate-300 text-xs font-medium transition-all text-center select-none h-full shadow-sm">
+                        <i class="fa-solid ${alg.icon} text-xl mb-1.5 ${alg.iconColor}"></i>
+                        <span>${alg.name}</span>
+                    </label>
+                `;
+                container.appendChild(div);
+            });
+
+            // Option: Libre de Alérgenos
+            const noneDiv = document.createElement('div');
+            noneDiv.className = "relative col-span-2 sm:col-span-1";
+            noneDiv.innerHTML = `
+                <input type="checkbox" id="chk-prc-NONE" value="NONE" class="checkbox-allergen hidden">
+                <label for="chk-prc-NONE" class="color-NONE flex flex-col items-center justify-center p-3 bg-slate-900/80 border border-slate-700/80 hover:border-emerald-400 rounded-xl cursor-pointer text-slate-300 text-xs font-medium transition-all text-center select-none h-full shadow-sm">
+                    <i class="fa-solid fa-shield-halved text-xl mb-1.5 text-emerald-400"></i>
+                    <span>Libre de Alérgenos</span>
+                </label>
+            `;
+            container.appendChild(noneDiv);
+
+            // Add Vegan & Veg Suitability Flags
+            const vegDiv = document.createElement('div');
+            vegDiv.className = "relative col-span-2 sm:col-span-1";
+            vegDiv.innerHTML = `
+                <input type="checkbox" id="chk-prc-VEGAN" value="VEGAN" class="checkbox-allergen hidden">
+                <label for="chk-prc-VEGAN" class="color-VEGAN flex flex-col items-center justify-center p-3 bg-slate-900/80 border border-slate-700/80 hover:border-emerald-500 rounded-xl cursor-pointer text-slate-300 text-xs font-medium transition-all text-center select-none h-full shadow-sm">
+                    <i class="fa-solid fa-seedling text-xl mb-1.5 text-emerald-400"></i>
+                    <span>Apto VEGANO</span>
+                </label>
+            `;
+            container.appendChild(vegDiv);
+
+            const veg2Div = document.createElement('div');
+            veg2Div.className = "relative col-span-2 sm:col-span-1";
+            veg2Div.innerHTML = `
+                <input type="checkbox" id="chk-prc-VEG" value="VEG" class="checkbox-allergen hidden">
+                <label for="chk-prc-VEG" class="color-VEG flex flex-col items-center justify-center p-3 bg-slate-900/80 border border-slate-700/80 hover:border-green-500 rounded-xl cursor-pointer text-slate-300 text-xs font-medium transition-all text-center select-none h-full shadow-sm">
+                    <i class="fa-solid fa-leaf text-xl mb-1.5 text-green-400"></i>
+                    <span>Apto VEGETARIANO</span>
+                </label>
+            `;
+            container.appendChild(veg2Div);
+        }
+
+        function nextPracticeDish() {
+            const filterCat = document.getElementById('practice-category-filter').value;
+            let availableDishes = DISHES_DATA;
+
+            if (filterCat !== 'ALL') {
+                availableDishes = DISHES_DATA.filter(d => d.category === filterCat);
+            }
+
+            if (availableDishes.length === 0) availableDishes = DISHES_DATA;
+
+            // Pick random dish
+            const randomIndex = Math.floor(Math.random() * availableDishes.length);
+            currentPracticeDish = availableDishes[randomIndex];
+
+            // Render Dish Info
+            document.getElementById('practice-dish-category').textContent = currentPracticeDish.categoryName;
+            document.getElementById('practice-dish-name').textContent = currentPracticeDish.name;
+            document.getElementById('practice-dish-en').textContent = currentPracticeDish.en;
+            document.getElementById('practice-ingredients-list').textContent = currentPracticeDish.ingredients;
+
+            // Reset Ingredients Dropdown & Feedback
+            document.getElementById('practice-ingredients-box').classList.add('hidden');
+            document.getElementById('ingredients-toggle-txt').textContent = "Ver Ingredientes";
+            
+            const fb = document.getElementById('practice-feedback');
+            fb.classList.add('hidden');
+            fb.className = "hidden mb-6 p-4 rounded-xl text-sm leading-relaxed border animate-fade-in";
+
+            // Reset checkboxes
+            document.querySelectorAll('#practice-allergens-grid input[type="checkbox"]').forEach(chk => {
+                chk.checked = false;
+                chk.disabled = false;
+            });
+
+            // Toggle Buttons
+            document.getElementById('btn-check-practice').classList.remove('hidden');
+            document.getElementById('btn-next-practice').classList.add('hidden');
+        }
+
+        function togglePracticeIngredients() {
+            const box = document.getElementById('practice-ingredients-box');
+            const txt = document.getElementById('ingredients-toggle-txt');
+            if (box.classList.contains('hidden')) {
+                box.classList.remove('hidden');
+                txt.textContent = "Ocultar Ingredientes";
+            } else {
+                box.classList.add('hidden');
+                txt.textContent = "Ver Ingredientes";
+            }
+        }
+
+        function resetPracticeQuestion() {
+            nextPracticeDish();
+        }
+
+        function checkPracticeAnswer() {
+            if (!currentPracticeDish) return;
+
+            // Gather user selections
+            const userSelections = [];
+            document.querySelectorAll('#practice-allergens-grid input[type="checkbox"]:checked').forEach(chk => {
+                userSelections.push(chk.value);
+            });
+
+            const trueAllergens = [...currentPracticeDish.allergens];
+            
+            const isUserNone = userSelections.includes('NONE');
+            const isUserVegan = userSelections.includes('VEGAN');
+            const isUserVeg = userSelections.includes('VEG');
+
+            const isTrueNone = (trueAllergens.length === 0);
+            const isTrueVegan = currentPracticeDish.vegan;
+            const isTrueVeg = currentPracticeDish.veg;
+
+            const selectedAllergensOnly = userSelections.filter(x => x !== 'VEGAN' && x !== 'VEG' && x !== 'NONE');
+            
+            // False positives (selected but not present)
+            const falsePositives = selectedAllergensOnly.filter(a => !trueAllergens.includes(a));
+            // Missed allergens (present but not selected)
+            const missedAllergens = trueAllergens.filter(a => !selectedAllergensOnly.includes(a));
+
+            const noneCorrect = (isUserNone === isTrueNone);
+            const veganCorrect = (isUserVegan === isTrueVegan);
+            const vegCorrect = (isUserVeg === isTrueVeg);
+
+            let isPerfect = false;
+            if (isTrueNone) {
+                isPerfect = isUserNone && (selectedAllergensOnly.length === 0) && veganCorrect && vegCorrect;
+            } else {
+                isPerfect = !isUserNone && (falsePositives.length === 0) && (missedAllergens.length === 0) && veganCorrect && vegCorrect;
+            }
+
+            const fb = document.getElementById('practice-feedback');
+            fb.classList.remove('hidden');
+
+            playFeedbackSound(isPerfect);
+
+            if (isPerfect) {
+                practiceStats.correct++;
+                fb.className = "mb-6 p-4 rounded-xl text-sm leading-relaxed border bg-emerald-950/70 border-emerald-700/80 text-emerald-200 animate-fade-in";
+                fb.innerHTML = `
+                    <div class="flex items-start space-x-3">
+                        <i class="fa-solid fa-circle-check text-2xl text-emerald-400 mt-0.5"></i>
+                        <div>
+                            <strong class="text-emerald-300 font-bold text-base block mb-1">¡Respuesta Correcta!</strong>
+                            Has identificado exactamente los alérgenos y la aptitud dietética de <strong>"${currentPracticeDish.name}"</strong>.
+                        </div>
+                    </div>
+                `;
+            } else {
+                practiceStats.incorrect++;
+                fb.className = "mb-6 p-4 rounded-xl text-sm leading-relaxed border bg-rose-950/70 border-rose-700/80 text-rose-200 animate-fade-in";
+                
+                let detailsHTML = '<ul class="list-disc list-inside space-y-1 mt-2 text-xs text-rose-300">';
+                if (isTrueNone && !isUserNone) {
+                    detailsHTML += `<li>El plato es <strong>LIBRE DE ALÉRGENOS</strong> (debías marcar esa casilla).</li>`;
+                }
+                if (!isTrueNone && isUserNone) {
+                    detailsHTML += `<li>Marcaste "Libre de alérgenos", pero el plato <strong>SÍ contiene alérgenos</strong>.</li>`;
+                }
+                if (missedAllergens.length > 0) {
+                    detailsHTML += `<li>Te faltó marcar: <strong>${missedAllergens.join(', ')}</strong></li>`;
+                }
+                if (falsePositives.length > 0) {
+                    detailsHTML += `<li>Marcaste erróneamente (no contiene): <strong>${falsePositives.join(', ')}</strong></li>`;
+                }
+                if (!veganCorrect) {
+                    detailsHTML += `<li>Aptitud Vegana: Es <strong>${isTrueVegan ? 'SÍ Apto para Veganos' : 'NO Apto para Veganos'}</strong>.</li>`;
+                }
+                if (!vegCorrect) {
+                    detailsHTML += `<li>Aptitud Vegetariana: Es <strong>${isTrueVeg ? 'SÍ Apto para Vegetarianos' : 'NO Apto para Vegetarianos'}</strong>.</li>`;
+                }
+                detailsHTML += '</ul>';
+
+                let officialAllergensStr = trueAllergens.length > 0 ? trueAllergens.join(', ') : 'Libre de Alérgenos (0 Alérgenos)';
+                let officialTracesStr = currentPracticeDish.traces.length > 0 ? ` (Trazas: ${currentPracticeDish.traces.join(', ')})` : '';
+
+                fb.innerHTML = `
+                    <div class="flex items-start space-x-3">
+                        <i class="fa-solid fa-triangle-exclamation text-2xl text-rose-400 mt-0.5"></i>
+                        <div>
+                            <strong class="text-rose-200 font-bold text-base block">Respuesta Incorrecta</strong>
+                            ${detailsHTML}
+                            <div class="mt-3 pt-2 border-t border-rose-800/60 text-xs text-slate-300">
+                                📌 <strong>Ficha Oficial Cadaqués:</strong> Alérgenos: <span class="text-amber-300 font-semibold">${officialAllergensStr}</span>${officialTracesStr}.
+                                | Vegano: <strong>${isTrueVegan ? 'SÍ' : 'NO'}</strong> | Vegetariano: <strong>${isTrueVeg ? 'SÍ' : 'NO'}</strong>.
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Update stats
+            document.getElementById('practice-score-correct').textContent = practiceStats.correct;
+            document.getElementById('practice-score-incorrect').textContent = practiceStats.incorrect;
+
+            // Disable checkboxes after submission
+            document.querySelectorAll('#practice-allergens-grid input[type="checkbox"]').forEach(chk => chk.disabled = true);
+
+            // Toggle buttons
+            document.getElementById('btn-check-practice').classList.add('hidden');
+            document.getElementById('btn-next-practice').classList.remove('hidden');
+        }
+
+        function startExam() {
+            document.getElementById('exam-intro').classList.add('hidden');
+            document.getElementById('exam-results').classList.add('hidden');
+            document.getElementById('exam-active').classList.remove('hidden');
+
+            // Generate 10 random dishes for the exam
+            const shuffledDishes = [...DISHES_DATA].sort(() => 0.5 - Math.random());
+            examQuestions = shuffledDishes.slice(0, 10);
+
+            currentExamIndex = 0;
+            examUserAnswers = [];
+            examScore = 0;
+
+            renderExamQuestion();
+        }
+
+        function renderExamQuestion() {
+            const dish = examQuestions[currentExamIndex];
+            
+            document.getElementById('exam-q-current').textContent = currentExamIndex + 1;
+            document.getElementById('exam-progress-bar').style.width = `${((currentExamIndex + 1) / 10) * 100}%`;
+
+            document.getElementById('exam-q-category').textContent = dish.categoryName;
+            document.getElementById('exam-q-title').textContent = dish.name;
+            document.getElementById('exam-q-subtitle').textContent = dish.en;
+
+            const container = document.getElementById('exam-allergens-grid');
+            container.innerHTML = '';
+
+            // Render all 16 allergen icons with custom colors
+            ALLERGEN_KEYS.forEach(alg => {
+                const div = document.createElement('div');
+                div.className = "relative";
+                div.innerHTML = `
+                    <input type="checkbox" id="chk-exm-${alg.id}" value="${alg.id}" class="checkbox-allergen hidden">
+                    <label for="chk-exm-${alg.id}" class="${alg.colorClass} flex flex-col items-center justify-center p-3 bg-slate-900/80 border border-slate-700/80 ${alg.bgHover} rounded-xl cursor-pointer text-slate-300 text-xs font-medium transition-all text-center select-none h-full shadow-sm">
+                        <i class="fa-solid ${alg.icon} text-xl mb-1.5 ${alg.iconColor}"></i>
+                        <span>${alg.name}</span>
+                    </label>
+                `;
+                container.appendChild(div);
+            });
+
+            // Option: Libre de Alérgenos
+            const noneDiv = document.createElement('div');
+            noneDiv.className = "relative col-span-2 sm:col-span-1";
+            noneDiv.innerHTML = `
+                <input type="checkbox" id="chk-exm-NONE" value="NONE" class="checkbox-allergen hidden">
+                <label for="chk-exm-NONE" class="color-NONE flex flex-col items-center justify-center p-3 bg-slate-900/80 border border-slate-700/80 hover:border-emerald-400 rounded-xl cursor-pointer text-slate-300 text-xs font-medium transition-all text-center select-none h-full shadow-sm">
+                    <i class="fa-solid fa-shield-halved text-xl mb-1.5 text-emerald-400"></i>
+                    <span>Libre de Alérgenos</span>
+                </label>
+            `;
+            container.appendChild(noneDiv);
+
+            // Add Vegan & Veg Suitability Flags
+            const vegDiv = document.createElement('div');
+            vegDiv.className = "relative col-span-2 sm:col-span-1";
+            vegDiv.innerHTML = `
+                <input type="checkbox" id="chk-exm-VEGAN" value="VEGAN" class="checkbox-allergen hidden">
+                <label for="chk-exm-VEGAN" class="color-VEGAN flex flex-col items-center justify-center p-3 bg-slate-900/80 border border-slate-700/80 hover:border-emerald-500 rounded-xl cursor-pointer text-slate-300 text-xs font-medium transition-all text-center select-none h-full shadow-sm">
+                    <i class="fa-solid fa-seedling text-xl mb-1.5 text-emerald-400"></i>
+                    <span>Apto VEGANO</span>
+                </label>
+            `;
+            container.appendChild(vegDiv);
+
+            const veg2Div = document.createElement('div');
+            veg2Div.className = "relative col-span-2 sm:col-span-1";
+            veg2Div.innerHTML = `
+                <input type="checkbox" id="chk-exm-VEG" value="VEG" class="checkbox-allergen hidden">
+                <label for="chk-exm-VEG" class="color-VEG flex flex-col items-center justify-center p-3 bg-slate-900/80 border border-slate-700/80 hover:border-green-500 rounded-xl cursor-pointer text-slate-300 text-xs font-medium transition-all text-center select-none h-full shadow-sm">
+                    <i class="fa-solid fa-leaf text-xl mb-1.5 text-green-400"></i>
+                    <span>Apto VEGETARIANO</span>
+                </label>
+            `;
+            container.appendChild(veg2Div);
+        }
+
+        function submitExamAnswer() {
+            const currentDish = examQuestions[currentExamIndex];
+            
+            // Gather selected allergens
+            const userSelections = [];
+            document.querySelectorAll('#exam-allergens-grid input[type="checkbox"]:checked').forEach(chk => {
+                userSelections.push(chk.value);
+            });
+
+            const trueAllergens = [...currentDish.allergens];
+            const isUserNone = userSelections.includes('NONE');
+            const isUserVegan = userSelections.includes('VEGAN');
+            const isUserVeg = userSelections.includes('VEG');
+
+            const isTrueNone = (trueAllergens.length === 0);
+            const isTrueVegan = currentDish.vegan;
+            const isTrueVeg = currentDish.veg;
+
+            const selectedAllergensOnly = userSelections.filter(x => x !== 'VEGAN' && x !== 'VEG' && x !== 'NONE');
+            
+            const falsePositives = selectedAllergensOnly.filter(a => !trueAllergens.includes(a));
+            const missedAllergens = trueAllergens.filter(a => !selectedAllergensOnly.includes(a));
+
+            const veganCorrect = (isUserVegan === isTrueVegan);
+            const vegCorrect = (isUserVeg === isTrueVeg);
+
+            let isPerfect = false;
+            if (isTrueNone) {
+                isPerfect = isUserNone && (selectedAllergensOnly.length === 0) && veganCorrect && vegCorrect;
+            } else {
+                isPerfect = !isUserNone && (falsePositives.length === 0) && (missedAllergens.length === 0) && veganCorrect && vegCorrect;
+            }
+
+            if (isPerfect) examScore++;
+
+            examUserAnswers.push({
+                dish: currentDish,
+                userSelections: userSelections,
+                selectedAllergensOnly: selectedAllergensOnly,
+                trueAllergens: trueAllergens,
+                falsePositives: falsePositives,
+                missedAllergens: missedAllergens,
+                isUserNone: isUserNone,
+                isTrueNone: isTrueNone,
+                isUserVegan: isUserVegan,
+                isTrueVegan: isTrueVegan,
+                isUserVeg: isUserVeg,
+                isTrueVeg: isTrueVeg,
+                isCorrect: isPerfect
+            });
+
+            currentExamIndex++;
+
+            if (currentExamIndex < 10) {
+                renderExamQuestion();
+            } else {
+                finishExam();
+            }
+        }
+
+        function finishExam() {
+            document.getElementById('exam-active').classList.add('hidden');
+            document.getElementById('exam-results').classList.remove('hidden');
+
+            document.getElementById('exam-final-score').textContent = `${examScore} / 10`;
+
+            const iconDiv = document.getElementById('exam-badge-icon');
+            const titleEl = document.getElementById('exam-final-title');
+            const msgEl = document.getElementById('exam-final-msg');
+
+            if (examScore >= 8) {
+                iconDiv.className = "w-20 h-20 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto text-4xl shadow-xl border border-emerald-500/40";
+                iconDiv.innerHTML = "🏆";
+                titleEl.textContent = "¡Excelente Dominio!";
+                msgEl.textContent = "Has demostrado un dominio sobresaliente reconociendo los iconos de alérgenos de Cadaqués Madrid. ¡Apto para el servicio!";
+            } else if (examScore >= 5) {
+                iconDiv.className = "w-20 h-20 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center mx-auto text-4xl shadow-xl border border-amber-500/40";
+                iconDiv.innerHTML = "🎓";
+                titleEl.textContent = "Aprobado - Con Repaso";
+                msgEl.textContent = "Has superado la puntuación mínima, pero se recomienda seguir practicando con la rejilla de iconos.";
+            } else {
+                iconDiv.className = "w-20 h-20 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center mx-auto text-4xl shadow-xl border border-rose-500/40";
+                iconDiv.innerHTML = "⚠️";
+                titleEl.textContent = "Revisión Necesaria";
+                msgEl.textContent = "Es importante repasar la carta en la sección Explorador para garantizar la máxima seguridad alimentaria.";
+            }
+
+            // Render Detailed Breakdown
+            const list = document.getElementById('exam-breakdown-list');
+            list.innerHTML = '';
+
+            examUserAnswers.forEach((ans, idx) => {
+                const card = document.createElement('div');
+                card.className = `p-4 rounded-xl border text-xs space-y-2 ${ans.isCorrect ? 'bg-emerald-950/40 border-emerald-800/60' : 'bg-rose-950/40 border-rose-800/60'}`;
+                
+                let selectedStr = ans.userSelections.map(s => {
+                    if (s === 'NONE') return 'Libre de Alérgenos';
+                    if (s === 'VEGAN') return 'Vegano';
+                    if (s === 'VEG') return 'Vegetariano';
+                    return s;
+                }).join(', ') || 'Ninguna casilla seleccionada';
+
+                let officialStr = ans.trueAllergens.length > 0 ? ans.trueAllergens.join(', ') : 'Libre de Alérgenos';
+
+                card.innerHTML = `
+                    <div class="flex items-center justify-between font-bold">
+                        <span class="text-slate-200 text-sm">Plato ${idx + 1}: ${ans.dish.name}</span>
+                        <span class="${ans.isCorrect ? 'text-emerald-400' : 'text-rose-400'}">
+                            ${ans.isCorrect ? '<i class="fa-solid fa-check mr-1"></i> Correcto' : '<i class="fa-solid fa-xmark mr-1"></i> Fallo'}
+                        </span>
+                    </div>
+                    <div class="text-slate-300">Tu selección: <strong class="${ans.isCorrect ? 'text-emerald-300' : 'text-rose-300'}">${selectedStr}</strong></div>
+                    ${!ans.isCorrect ? `<div class="text-emerald-300">Ficha oficial: <strong>${officialStr}</strong> | Vegano: <strong>${ans.isTrueVegan ? 'SI' : 'NO'}</strong> | Vegetariano: <strong>${ans.isTrueVeg ? 'SI' : 'NO'}</strong></div>` : ''}
+                    <div class="pt-1 text-slate-400 text-[11px] border-t border-slate-800">
+                        📋 <strong>Ingredientes:</strong> ${ans.dish.ingredients}
+                    </div>
+                `;
+                list.appendChild(card);
+            });
+        }
+
+        function toggleDietFilter(type) {
+            const btnVegan = document.getElementById('btn-filter-vegan');
+            const btnVeg = document.getElementById('btn-filter-veg');
+
+            if (type === 'vegan') {
+                if (activeDietFilter === 'vegan') {
+                    activeDietFilter = null;
+                    btnVegan.className = "bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 text-xs px-3 py-1.5 rounded-lg flex items-center space-x-1.5 transition-all";
+                } else {
+                    activeDietFilter = 'vegan';
+                    btnVegan.className = "bg-emerald-600 text-white font-bold border border-emerald-500 text-xs px-3 py-1.5 rounded-lg flex items-center space-x-1.5 transition-all shadow-md";
+                    btnVeg.className = "bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 text-xs px-3 py-1.5 rounded-lg flex items-center space-x-1.5 transition-all";
+                }
+            } else if (type === 'veg') {
+                if (activeDietFilter === 'veg') {
+                    activeDietFilter = null;
+                    btnVeg.className = "bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 text-xs px-3 py-1.5 rounded-lg flex items-center space-x-1.5 transition-all";
+                } else {
+                    activeDietFilter = 'veg';
+                    btnVeg.className = "bg-green-600 text-white font-bold border border-green-500 text-xs px-3 py-1.5 rounded-lg flex items-center space-x-1.5 transition-all shadow-md";
+                    btnVegan.className = "bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 text-xs px-3 py-1.5 rounded-lg flex items-center space-x-1.5 transition-all";
+                }
+            }
+            renderExplorerGrid();
+        }
+
+        function renderExplorerGrid() {
+            const searchQuery = document.getElementById('explorer-search').value.toLowerCase().trim();
+            const catFilter = document.getElementById('explorer-category-filter').value;
+            const allergenFilter = document.getElementById('explorer-allergen-filter').value;
+
+            const grid = document.getElementById('explorer-grid');
+            grid.innerHTML = '';
+
+            const filtered = DISHES_DATA.filter(dish => {
+                // Category match
+                if (catFilter !== 'ALL' && dish.category !== catFilter) return false;
+
+                // Allergen match
+                if (allergenFilter !== 'ALL' && !dish.allergens.includes(allergenFilter)) return false;
+
+                // Diet match
+                if (activeDietFilter === 'vegan' && !dish.vegan) return false;
+                if (activeDietFilter === 'veg' && !dish.veg) return false;
+
+                // Search query
+                if (searchQuery) {
+                    const matchName = dish.name.toLowerCase().includes(searchQuery);
+                    const matchEn = dish.en.toLowerCase().includes(searchQuery);
+                    const matchIng = dish.ingredients.toLowerCase().includes(searchQuery);
+                    if (!matchName && !matchEn && !matchIng) return false;
+                }
+
+                return true;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-12 text-slate-400 bg-slate-900/40 rounded-2xl border border-slate-800">
+                        <i class="fa-solid fa-magnifying-glass text-3xl mb-3 text-slate-600"></i>
+                        <p class="text-sm font-medium">No se encontraron platos con los filtros seleccionados.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filtered.forEach(dish => {
+                const card = document.createElement('div');
+                card.className = "glass-card rounded-2xl p-5 flex flex-col justify-between space-y-4 cursor-pointer hover:border-sky-500/50 transition-all";
+                card.onclick = () => openDishModal(dish.id);
+
+                // Badges html for allergens
+                let allergensHTML = '';
+                if (dish.allergens.length === 0) {
+                    allergensHTML = `<span class="badge-absent px-2 py-0.5 rounded text-[11px] font-semibold">Sin alérgenos declarados</span>`;
+                } else {
+                    dish.allergens.forEach(alg => {
+                        allergensHTML += `<span class="badge-present px-2 py-0.5 rounded text-[11px] font-medium mr-1 mb-1 inline-block">${alg}</span>`;
+                    });
+                }
+
+                // Traces html
+                let tracesHTML = '';
+                if (dish.traces.length > 0) {
+                    dish.traces.forEach(tr => {
+                        tracesHTML += `<span class="badge-traces px-2 py-0.5 rounded text-[10px] font-medium mr-1 mb-1 inline-block">Trazas: ${tr}</span>`;
+                    });
+                }
+
+                // Diet Badges
+                let dietHTML = '';
+                if (dish.vegan) {
+                    dietHTML += `<span class="bg-emerald-950/80 text-emerald-300 border border-emerald-700 px-2 py-0.5 rounded text-[10px] font-bold">VEGANO</span>`;
+                } else if (dish.veg) {
+                    dietHTML += `<span class="bg-green-950/80 text-green-300 border border-green-700 px-2 py-0.5 rounded text-[10px] font-bold">VEGETARIANO</span>`;
+                }
+
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-center justify-between mb-1.5">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-sky-400 bg-sky-950/60 border border-sky-800 px-2 py-0.5 rounded">
+                                ${dish.categoryName}
+                            </span>
+                            <div class="flex items-center space-x-1">
+                                ${dietHTML}
+                            </div>
+                        </div>
+
+                        <h4 class="text-lg font-bold text-white leading-snug">${dish.name}</h4>
+                        <p class="text-xs text-slate-400 italic mb-3">${dish.en}</p>
+
+                        <div class="flex flex-wrap items-center mt-2">
+                            ${allergensHTML}
+                            ${tracesHTML}
+                        </div>
+                    </div>
+
+                    <div class="pt-3 border-t border-slate-700/60 flex items-center justify-between text-xs text-slate-400">
+                        <span class="truncate max-w-[200px] text-[11px]"><i class="fa-solid fa-basket-shopping text-slate-500 mr-1"></i> ${dish.ingredients}</span>
+                        <span class="text-sky-400 font-semibold flex items-center space-x-1">
+                            <span>Ver Ficha</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </span>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function openDishModal(dishId) {
+            const dish = DISHES_DATA.find(d => d.id === dishId);
+            if (!dish) return;
+
+            const modalContent = document.getElementById('modal-content');
+            
+            let allergensList = dish.allergens.length > 0 
+                ? dish.allergens.map(a => `<span class="badge-present px-3 py-1 rounded-lg text-xs font-semibold inline-block mr-1.5 mb-1.5">${a}</span>`).join('')
+                : '<span class="badge-absent px-3 py-1 rounded-lg text-xs font-semibold">Sin alérgenos presentes declarados</span>';
+
+            let tracesList = dish.traces.length > 0 
+                ? dish.traces.map(t => `<span class="badge-traces px-3 py-1 rounded-lg text-xs font-semibold inline-block mr-1.5 mb-1.5">Trazas: ${t}</span>`).join('')
+                : '<span class="text-slate-500 text-xs">Sin trazas adicionales registradas</span>';
+
+            modalContent.innerHTML = `
+                <div class="space-y-4">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-sky-400 bg-sky-950 border border-sky-800 px-2.5 py-0.5 rounded">
+                            ${dish.categoryName}
+                        </span>
+                        <h3 class="text-2xl font-bold text-white mt-2">${dish.name}</h3>
+                        <p class="text-sm text-slate-400 italic">${dish.en}</p>
+                    </div>
+
+                    <div class="bg-slate-900/90 p-4 rounded-xl border border-slate-700 space-y-3">
+                        <div>
+                            <strong class="text-xs font-semibold text-slate-300 uppercase tracking-wide block mb-1.5">Alérgenos Presentes (OFICIAL 2026):</strong>
+                            <div>${allergensList}</div>
+                        </div>
+
+                        <div class="pt-2 border-t border-slate-800">
+                            <strong class="text-xs font-semibold text-slate-300 uppercase tracking-wide block mb-1.5">Posibles Trazas:</strong>
+                            <div>${tracesList}</div>
+                        </div>
+
+                        <div class="pt-2 border-t border-slate-800 flex items-center space-x-4 text-xs text-slate-300">
+                            <span>Apto Vegano: <strong class="${dish.vegan ? 'text-emerald-400' : 'text-slate-500'}">${dish.vegan ? 'SI' : 'NO'}</strong></span>
+                            <span>Apto Vegetariano: <strong class="${dish.veg ? 'text-green-400' : 'text-slate-500'}">${dish.veg ? 'SI' : 'NO'}</strong></span>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-slate-900/60 rounded-xl border border-slate-800 text-xs text-slate-300 leading-relaxed">
+                        <strong class="text-sky-400 block mb-1"><i class="fa-solid fa-list-check mr-1"></i> Composición e Ingredientes Completos:</strong>
+                        <p>${dish.ingredients}</p>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('dish-modal').classList.remove('hidden');
+        }
+
+        function closeDishModal() {
+            document.getElementById('dish-modal').classList.add('hidden');
+        }
+
+        window.onload = function() {
+            loadPracticeGrid();
+            nextPracticeDish();
+            renderExplorerGrid();
+        };
+    </script>
+</body>
+</html>
